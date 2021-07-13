@@ -86,7 +86,9 @@ export default {
       }
       this.height = ah;
 
-      requestAnimationFrame(this.resize);
+      if(this.jump){
+        requestAnimationFrame(this.resize);
+      }
     },
   },
 };
