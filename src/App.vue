@@ -91,7 +91,7 @@ export default {
       const ah = window.innerHeight;
       // this.size = `is iOS : ${this.iOS}`;
       if (ah == this.height) {
-        this.top = h - ah;
+        this.top = ((h - ah)+ this.top)/2;
       }
       this.height = ah;
 
