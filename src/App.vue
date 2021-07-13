@@ -1,8 +1,8 @@
 <template>
   <div
     class="w-full h-full flex flex-col transition-all"
-    :class="{ '': !jump, fixed: jump }"
-    :style="jump ? `top:${top}px; height:${height}px` : ''"
+    :class="{ fixed: jump&&iOS }"
+    :style="jump&&iOS ? `top:${top}px; height:${height}px` : ''"
   >
     <div id="video" class="w-full h-60 flex-none">
       <iframe
