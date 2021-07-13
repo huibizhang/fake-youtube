@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import MobileDetect from 'MobileDetect'
+import MobileDetect from 'mobile-detect'
 
 export default {
   data() {
