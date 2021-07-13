@@ -1,6 +1,10 @@
 <template>
-  <div class="w-full h-full flex flex-col">
-    <div class="w-full h-60 flex-none" :class="{'':!jump,'fixed':jump}" :style="jump?'top:0vh;':''">
+  <div
+    class="w-full h-full flex flex-col transition-all"
+    :class="{ '': !jump, fixed: jump }"
+    :style="jump ? `top:${top}px; height:${height}px` : ''"
+  >
+    <div id="video" class="w-full h-60 flex-none">
       <iframe
         class="w-full h-full"
         src="https://www.youtube.com/embed/DxcJbrs6rKk"
@@ -29,45 +33,19 @@
     <div class="flex-none relative">
       <div class="flex p-3 gap-3 border-t border-gray-200 h-16">
         <input
-          class="
-            p-2
-            flex-1
-            border-b-2
-            focus:border-blue-500
-            outline-none
-            transition-all
-          "
+          class="p-2 flex-1 border-b-2 focus:border-blue-500 outline-none transition-all"
           placeholder="留言..."
           @focus="changeState('focus')"
           @blur="changeState('blur')"
+          :value="size"
         />
         <button class="w-16 bg-blue-600 text-white rounded-md">送出</button>
       </div>
       <div
-        class="
-          absolute
-          -top-16
-          w-full
-          h-16
-          bg-gradient-to-t
-          from-white
-          to-transparent
-          pointer-events-none
-          z-0
-        "
+        class="absolute -top-16 w-full h-16 bg-gradient-to-t from-white to-transparent pointer-events-none z-0"
       ></div>
       <div
-        class="
-          absolute
-          -top-3
-          w-full
-          h-3
-          bg-gradient-to-t
-          from-gray-200/50
-          to-transparent
-          pointer-events-none
-          z-0
-        "
+        class="absolute -top-3 w-full h-3 bg-gradient-to-t from-gray-200/50 to-transparent pointer-events-none z-0"
       ></div>
     </div>
   </div>
@@ -75,20 +53,41 @@
 
 <script>
 export default {
-  data(){
+  data() {
     return {
-      jump: false
-    }
+      jump: false,
+      size: "",
+      top: 0,
+      height: 0,
+      h: 0,
+    };
   },
-  methods:{
-    changeState( state ){
-      console.log(state)
-      if(state==='focus'){
+  mounted() {
+    this.h = window.innerHeight;
+    this.resize();
+  },
+  methods: {
+    changeState(state) {
+      if (state === "focus") {
         this.jump = true;
-      }else{
+      } else {
         this.jump = false;
       }
-    }
-  }
-}
+      this.resize();
+    },
+    resize() {
+      const h = this.h;
+      const ah = window.innerHeight;
+      this.size = `${h} x ${ah}`;
+      if (ah == this.height) {
+        this.top = h - ah;
+      }
+      this.height = ah;
+
+      if (this.jump) {
+        requestAnimationFrame(this.resize);
+      }
+    },
+  },
+};
 </script>
