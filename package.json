@@ -6,6 +6,7 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "mobile-detect": "^1.4.5",
     "vitawind": "^1.2.4",
     "vue": "^3.0.5"
   },

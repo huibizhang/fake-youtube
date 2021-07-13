@@ -60,9 +60,15 @@ export default {
       top: 0,
       height: 0,
       h: 0,
+      iOS: null,
     };
   },
   mounted() {
+
+    this.iOS = new MobileDetect(window.navigator.userAgent).is(
+      "iPhone"
+    );
+
     this.h = window.innerHeight;
     this.resize();
   },
@@ -73,7 +79,10 @@ export default {
       } else {
         this.jump = false;
       }
-      this.resize();
+
+      if(this.iOS){
+        this.resize();
+      }
     },
     resize() {
       const h = this.h;
