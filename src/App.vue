@@ -1,6 +1,6 @@
 <template>
   <div class="w-full h-full flex flex-col">
-    <div class="w-full h-60 flex-none" :class="{'':!jump,'fixed top-0':jump}">
+    <div class="w-full h-60 flex-none" :class="{'':!jump,'fixed':jump}"  :style="jump?'top:0vh;':''">
       <iframe
         class="w-full h-full"
         src="https://www.youtube.com/embed/DxcJbrs6rKk"
