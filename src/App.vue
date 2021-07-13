@@ -52,6 +52,8 @@
 </template>
 
 <script>
+import MobileDetect from 'MobileDetect'
+
 export default {
   data() {
     return {
@@ -87,7 +89,7 @@ export default {
     resize() {
       const h = this.h;
       const ah = window.innerHeight;
-      this.size = `${h} x ${ah}`;
+      // this.size = `is iOS : ${this.iOS}`;
       if (ah == this.height) {
         this.top = h - ah;
       }
