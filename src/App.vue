@@ -1,6 +1,6 @@
 <template>
   <div class="w-full h-full flex flex-col">
-    <div class="w-full h-60 flex-none">
+    <div class="w-full h-60 flex-none" :class="{'':!jump,'fixed':jump}">
       <iframe
         class="w-full h-full"
         src="https://www.youtube.com/embed/DxcJbrs6rKk"
@@ -38,6 +38,8 @@
             transition-all
           "
           placeholder="留言..."
+          @focus="changeState('focus')"
+          @blur="changeState('blur')"
         />
         <button class="w-16 bg-blue-600 text-white rounded-md">送出</button>
       </div>
@@ -71,9 +73,22 @@
   </div>
 </template>
 
-<script setup>
-import HelloWorld from "./components/HelloWorld.vue";
-
-// This starter template is using Vue 3 experimental <script setup> SFCs
-// Check out https://github.com/vuejs/rfcs/blob/script-setup-2/active-rfcs/0000-script-setup.md
+<script>
+export default {
+  data(){
+    return {
+      jump: false
+    }
+  },
+  methods:{
+    changeState( state ){
+      console.log(state)
+      if(state==='focus'){
+        this.jump = true;
+      }else{
+        this.jump = false;
+      }
+    }
+  }
+}
 </script>
