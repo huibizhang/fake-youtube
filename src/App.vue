@@ -90,8 +90,6 @@ export default {
       this.size = `${h} x ${ah}`;
       if (ah == this.height) {
         this.top = h - ah;
-      }else if(this.heigh==this.h){
-        this.top = 0;
       }
       this.height = ah;
 
